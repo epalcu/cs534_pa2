@@ -73,25 +73,33 @@ def fill_dict(senders, receivers, dict):
         for receiver in receivers[rnd]:
             num_messages = len(receivers[rnd])
             rnd_list[receiver] = (1/(num_messages*1.0))
+            
         # Traverse list of senders for the current orund
         for sender in senders[rnd]:
+            
             # Check that it is a valid sender
             if sender in targets:
+                
                 # Pop off sender if it sent for current round
                 targets.pop(targets.index(sender))
+                
                 # If sender already in dictionary, simply append the current round list to its o_lists key
                 if sender in dict.keys():
                     o_list = dict[sender]['o_lists']
                     o_list.append(rnd_list)
+                    
                 # Else initialize a sender key with its initial o_list
                 else:
                     dict[sender] = {'o_lists': [rnd_list], 'u_lists': []}
+                    
         # Traverse remaining senders that didn't send message in the round and add in round list to its u list
         for target in targets:
+            
             # If sender already in dictionary, simply append the current round list to its u_lists key
             if target in dict.keys():
                 u_list = dict[target]['u_lists']
                 u_list.append(rnd_list)
+                
             # Else initialize a sender key with its initial u_list
             else:
                 dict[target] = {'o_lists': [], 'u_lists': [rnd_list]}
@@ -161,6 +169,7 @@ def print_dict(dict):
 
 if __name__ == "__main__":
     users = {}
+    
     # Get the senders and receivers... booyah!!!
     senders, receivers = openFile(sys.argv[1])
     dict_of_targets = fill_dict(senders, receivers, users)
