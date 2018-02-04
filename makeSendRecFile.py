@@ -33,6 +33,7 @@ if __name__ == "__main__":
             private.append(line[0:64])
 
     for key,values in pub_nodes_info.items():
+        
         # Connect to the node
         socket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         add = (values[0],values[1])
@@ -119,9 +120,9 @@ if __name__ == "__main__":
                 
                 for line in range(0, len(lines)):
                     items = lines[line].rstrip().split(' ')
+                    
                     # Process all of the OFFERs from current id
                     if(items[1] == "OFFER"):
-                        
                         if (prev == "ACK"):
                             round += 1
                             #if(round == 120):
@@ -132,6 +133,7 @@ if __name__ == "__main__":
                         
                         # Public OFFER messages
                         if(items[2][0] == 'f'):
+                            
                             # Check if tag in dict
                             if items[2] in public_rounds[round][0].keys():
                                 tuple = public_rounds[round][0][items[2]]
