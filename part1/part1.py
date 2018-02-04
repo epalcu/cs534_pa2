@@ -81,6 +81,7 @@ def fill_dict(senders, receivers, dict):
                 # Initialize a sender key with its initial o_list
                 if not sender in dict.keys():
                     dict[sender] = {'o_lists': [rnd_list], 'u_lists': []}
+                    
                 # Otherwise, simply append the current round list to its o_lists key
                 else:
                     o_list = dict[sender]['o_lists']
@@ -92,6 +93,7 @@ def fill_dict(senders, receivers, dict):
             # If sender not already in dictionary, initialize a sender key with its initial u_list
             if not target in dict.keys():
                 dict[target] = {'o_lists': [], 'u_lists': [rnd_list]}
+                
             # Else simply append the current round list to its u_lists key
             else:
                 u_list = dict[target]['u_lists']
